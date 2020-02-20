@@ -216,6 +216,7 @@
             android:background="@drawable/btn_red_large"
             android:text="Visit My Homepage"
             android:textAllCaps="false"
+            android:onClick="visitHomepage"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
