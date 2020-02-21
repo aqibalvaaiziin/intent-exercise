@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import model.EmailValidator;
 import model.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,13 +37,23 @@ public class RegisterActivity extends AppCompatActivity {
                 !(cPasswordText).equals("") && !(homepageText).equals("") && !(aboutText).equals(""))
         {
             if (passwordText.equals(cPasswordText)){
-                Intent intent = new Intent(this,ProfileActivity.class);
-                intent.putExtra("user",user);
-                Toast.makeText(this,user.getEmail(),Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }else{
+
+                if(EmailValidator.validate(emailText)){
+                    Toast.makeText(this,user.getEmail(),Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(this,ProfileActivity.class);
+                    intent.putExtra("user",user);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(this, "Email Tidak Sesuai !",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            else{
                 Toast.makeText(this, "Password Tidak Sesuai !",Toast.LENGTH_SHORT).show();
             }
+
         }else{
             Toast.makeText(this, "Lengkapi data terlebih dahulu !",Toast.LENGTH_SHORT).show();
         }
